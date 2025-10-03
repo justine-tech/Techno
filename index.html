@@ -3,741 +3,569 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Techno & Innovation Quiz</title>
+<title>Technopreneurship Quiz</title>
 <style>
   body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background: #f4f4f4;
-  }
-  .quiz-container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  h2 {
-    text-align: center;
-    color: #333;
   }
   .question {
-    font-weight: bold;
-    margin-top: 20px;
-    font-size: 1.2em;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
   }
-  .answers {
-    margin-top: 10px;
+  .question h3 {
+    margin-top: 0;
   }
-  .answer {
+  .options label {
     display: block;
-    width: 100%;
-    padding: 10px 15px;
-    margin: 8px 0;
-    font-size: 1em;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #fff;
-    transition: background-color 0.3s, border-color 0.3s;
+    margin: 5px 0;
   }
-  /* Styles for correct and wrong answer highlights */
   .correct {
-    background-color: #d4edda; /* light green */
-    border-color: #28a745; /* green border */
+    background-color: #c8e6c9; /* Light green for correct answer highlight */
   }
   .wrong {
-    background-color: #f8d7da; /* light red */
-    border-color: #dc3545; /* red border */
+    background-color: #ffcdd2; /* Light red for wrong answer highlight */
   }
-  /* Disable button style */
-  .answer:disabled {
-    cursor: not-allowed;
+  button {
+    padding: 8px 12px;
+    margin-top: 10px;
   }
 </style>
 </head>
 <body>
-<div class="quiz-container">
-  <h2>Techno & Innovation Quiz</h2>
-  <div id="quiz"></div>
-</div>
+
+<h1>Technopreneurship Quiz</h1>
+
+<div id="quiz-container"></div>
 
 <script>
-  const questions = [
-    {
-      question: "Key of problem solving in techno",
-      options: {
-        a: "Addressing societal challenges with technology",
-        b: "Process optimization and service enhancement",
-        c: "Providing tools for rapid development and deployment",
-        d: "Disruptive Innovation"
-      },
-      answer: "a"
-    },
-    {
-      question: "Characterizes the innovation approach",
-      options: {
-        a: "Process optimization and service enhancement",
-        b: "Addressing societal challenges with technology",
-        c: "Providing tools for rapid development and deployment",
-        d: "Disruptive Innovation"
-      },
-      answer: "a"
-    },
-    {
-      question: "Key role of technology as an enabler in techno",
-      options: {
-        a: "Providing tools for rapid development and deployment",
-        b: "Process optimization and service enhancement",
-        c: "Addressing societal challenges with technology",
-        d: "Disruptive Innovation"
-      },
-      answer: "a"
-    },
-    {
-      question: "Innovation do technopreneurs",
-      options: {
-        a: "Disruptive Innovation",
-        b: "Incremental Improvement",
-        c: "Process Optimization",
-        d: "Market Expansion"
-      },
-      answer: "a"
-    },
-    {
-      question: "Role do venture capitalists play",
-      options: {
-        a: "Invest in high-growth potential startups",
-        b: "Provide free resources",
-        c: "Regulate technology",
-        d: "Develop products"
-      },
-      answer: "a"
-    },
-    {
-      question: "Support structure primarily provides workspace",
-      options: {
-        a: "Incubators",
-        b: "Accelerators",
-        c: "Venture Capitalists",
-        d: "Research Labs"
-      },
-      answer: "a"
-    },
-    {
-      question: "Barrier to entry is most relevant for techno",
-      options: {
-        a: "Intellectual property",
-        b: "Market size",
-        c: "Funding",
-        d: "Regulations"
-      },
-      answer: "a"
-    },
-    {
-      question: "Distinguishes a technopreneur's growth pattern",
-      options: {
-        a: "Exponential and global growth by design",
-        b: "Linear and local growth",
-        c: "Slow and steady",
-        d: "Limited to domestic markets"
-      },
-      answer: "a"
-    },
-    {
-      question: "Aspect of the technopreneur mindset",
-      options: {
-        a: "Openness to pivoting",
-        b: "Resistance to change",
-        c: "Avoidance of risks",
-        d: "Focus on short-term profits"
-      },
-      answer: "a"
-    },
-    {
-      question: "Trait is essential to the technopreneur",
-      options: {
-        a: "Innovation-driven thinking",
-        b: "Risk aversion",
-        c: "Traditional approach",
-        d: "Passive attitude"
-      },
-      answer: "a"
-    },
-    {
-      question: "Most important for competitive advantage",
-      options: {
-        a: "Staying relevant through technological innovation",
-        b: "Cost-cutting",
-        c: "Brand recognition only",
-        d: "Market saturation"
-      },
-      answer: "a"
-    },
-    {
-      question: "Technology impact on a venture",
-      options: {
-        a: "Connects businesses to global markets instantly",
-        b: "Limits reach",
-        c: "Increases costs",
-        d: "Reduces innovation"
-      },
-      answer: "a"
-    },
-    {
-      question: "Support structure provides fixed-term, cohort",
-      options: {
-        a: "Accelerators",
-        b: "Incubators",
-        c: "Venture Capitalists",
-        d: "Research Labs"
-      },
-      answer: "a"
-    },
-    {
-      question: "Technopreneurship contributes to economic",
-      options: {
-        a: "By creating new industries and jobs",
-        b: "By reducing competition",
-        c: "By limiting innovation",
-        d: "By decreasing employment"
-      },
-      answer: "a"
-    },
-    {
-      question: "Resilience plays in technopreneurship",
-      options: {
-        a: "Persisting through challenges and setbacks",
-        b: "Avoiding risks",
-        c: "Ignoring failures",
-        d: "Waiting for perfect conditions"
-      },
-      answer: "a"
-    },
-    {
-      question: "Primary definition of techno",
-      options: {
-        a: "Entrepreneurship in the field of technology",
-        b: "Technology manufacturing",
-        c: "IT support services",
-        d: "Software development"
-      },
-      answer: "a"
-    },
-    {
-      question: "Technopreneurs typically approach wealth",
-      options: {
-        a: "By generating value for multiple stakeholders",
-        b: "By quick profits only",
-        c: "Through government grants",
-        d: "By monopolizing markets"
-      },
-      answer: "a"
-    },
-    {
-      question: "NOT typically associated with techno",
-      options: {
-        a: "Slow, linear growth",
-        b: "Disruptive innovation",
-        c: "Rapid scale-up",
-        d: "Global reach"
-      },
-      answer: "a"
-    },
-    {
-      question: "Scalability benefit for technopreneurial ventures",
-      options: {
-        a: "It allows for growth without proportional cost increase",
-        b: "It increases costs exponentially",
-        c: "It limits expansion",
-        d: "It reduces market reach"
-      },
-      answer: "a"
-    },
-    {
-      question: "Digital transformation relates to techno",
-      options: {
-        a: "It fuels ongoing shifts in all sectors",
-        b: "It only affects manufacturing",
-        c: "It slows down processes",
-        d: "It is irrelevant to tech"
-      },
-      answer: "a"
-    },
-    {
-      question: "Do not use competitor's mark in such",
-      options: {
-        a: "True",
-        b: "False"
-      },
-      answer: "a"
-    },
-    {
-      question: "Fill in the blank: ______ and Artistic Works",
-      options: {
-        a: "Literary",
-        b: "Musical",
-        c: "Visual",
-        d: "Performing"
-      },
-      answer: "a"
-    },
-    {
-      question: "Intellectual property",
-      options: {
-        a: "Property that arises from human intellect and creation",
-        b: "Physical property",
-        c: "Natural resource",
-        d: "Real estate"
-      },
-      answer: "a"
-    },
-    {
-      question: "Requirement for a patentable invention",
-      options: {
-        a: "It must be useful",
-        b: "It must be popular",
-        c: "It must be easy to copy",
-        d: "It must be secret"
-      },
-      answer: "a"
-    },
-    {
-      question: "Invention for which the ______ claims",
-      options: {
-        a: "Inventor",
-        b: "Company",
-        c: "Government",
-        d: "Researcher"
-      },
-      answer: "a"
-    },
-    {
-      question: "Copyright law protects",
-      options: {
-        a: "True",
-        b: "False"
-      },
-      answer: "a"
-    },
-    {
-      question: "Protection for Literary & Artistic",
-      options: {
-        a: "Copyright",
-        b: "Patent",
-        c: "Trademark",
-        d: "Trade secret"
-      },
-      answer: "a"
-    },
-    {
-      question: "Remedy for trademark infringement",
-      options: {
-        a: "Monetary compensation only",
-        b: "Imprisonment",
-        c: "Rebranding",
-        d: "None"
-      },
-      answer: "a"
-    },
-    {
-      question: "Constitutes copyright infringement",
-      options: {
-        a: "Reproducing a work without permission",
-        b: "Creating new works",
-        c: "Using own ideas",
-        d: "Public domain use"
-      },
-      answer: "a"
-    },
-    {
-      question: "Original in copyright law",
-      options: {
-        a: "True",
-        b: "False"
-      },
-      answer: "a"
-    },
-    {
-      question: "Intellectual Property arises from the ______ of human creation",
-      options: {
-        a: "Intellect",
-        b: "Resources",
-        c: "Market",
-        d: "Technology"
-      },
-      answer: "a"
-    },
-    {
-      question: "Main purpose of a patent",
-      options: {
-        a: "To grant exclusive rights to an invention",
-        b: "To promote competition",
-        c: "To increase sales",
-        d: "To prevent others from copying"
-      },
-      answer: "a"
-    },
-    {
-      question: "Main purpose of a trade secret",
-      options: {
-        a: "To maintain a competitive advantage",
-        b: "To publish information",
-        c: "To share openly",
-        d: "To register with authorities"
-      },
-      answer: "a"
-    },
-    {
-      question: "Two distinct forms of intellectual",
-      options: {
-        a: "Copyrights and trade secrets",
-        b: "Patents and trademarks",
-        c: "Design rights and utility models",
-        d: "Licenses and permits"
-      },
-      answer: "a"
-    },
-    {
-      question: "Common type of trade secret",
-      options: {
-        a: "Customer lists",
-        b: "Patent filings",
-        c: "Trademark logos",
-        d: "Copyright notices"
-      },
-      answer: "a"
-    },
-    {
-      question: "Filing fee for a trademark",
-      options: {
-        a: "PHP 2,592",
-        b: "PHP 1,000",
-        c: "PHP 5,000",
-        d: "PHP 10,000"
-      },
-      answer: "a"
-    },
-    {
-      question: "Philippines that values your right",
-      options: {
-        a: "Intellectual Property Office of the Philippines (IPOPHL)",
-        b: "Philippine Patent Office",
-        c: "Philippine Copyright Office",
-        d: "Department of Trade and Industry"
-      },
-      answer: "a"
-    },
-    {
-      question: "Splitting larger content into separate pages",
-      options: {
-        a: "Pagination",
-        b: "Segmentation",
-        c: "Partitioning",
-        d: "Dividing"
-      },
-      answer: "a"
-    },
-    {
-      question: "Industrial Property describes ______ matter that",
-      options: {
-        a: "Creations",
-        b: "Ideas",
-        c: "Resources",
-        d: "Innovations"
-      },
-      answer: "a"
-    },
-    {
-      question: "Plural form: know your __________",
-      options: {
-        a: "Rights",
-        b: "Assets",
-        c: "Patents",
-        d: "Inventions"
-      },
-      answer: "a"
-    },
-    {
-      question: "True about patents",
-      options: {
-        a: "They are territorial in nature",
-        b: "They are global",
-        c: "They last forever",
-        d: "They are automatic"
-      },
-      answer: "a"
-    },
-    {
-      question: "Duration of copyright protection",
-      options: {
-        a: "50 years",
-        b: "70 years",
-        c: "100 years",
-        d: "Lifetime"
-      },
-      answer: "a"
-    },
-    {
-      question: "Symbol \"℠\"",
-      options: {
-        a: "Service mark",
-        b: "Trademark",
-        c: "Copyright",
-        d: "Patent"
-      },
-      answer: "a"
-    },
-    {
-      question: "American __________ Association (APA)",
-      options: {
-        a: "Psychological",
-        b: "Legal",
-        c: "Engineering",
-        d: "Medical"
-      },
-      answer: "a"
-    },
-    {
-      question: "They are books, paintings, musical compositions",
-      options: {
-        a: "Copyright",
-        b: "Patent",
-        c: "Trademark",
-        d: "Trade secret"
-      },
-      answer: "a"
-    },
-    {
-      question: "Protects freedom of __________",
-      options: {
-        a: "Speech",
-        b: "Movement",
-        c: "Privacy",
-        d: "Assembly"
-      },
-      answer: "a"
-    },
-    {
-      question: "Act of the use of another's work",
-      options: {
-        a: "Plagiarism",
-        b: "Citation",
-        c: "Fair use",
-        d: "Attribution"
-      },
-      answer: "a"
-    },
-    {
-      question: "Unauthorized use of a copyrighted work",
-      options: {
-        a: "Copyright infringement",
-        b: "Fair use",
-        c: "Licensing",
-        d: "Public domain"
-      },
-      answer: "a"
-    },
-    {
-      question: "NOT covered by copyright",
-      options: {
-        a: "Ideas",
-        b: "Literary works",
-        c: "Music",
-        d: "Films"
-      },
-      answer: "a"
-    },
-    {
-      question: "Focus of Industrial Property",
-      options: {
-        a: "Commercial inventions",
-        b: "Artistic works",
-        c: "Literary works",
-        d: "Software"
-      },
-      answer: "a"
-    },
-    {
-      question: "Main purpose of a trademark",
-      options: {
-        a: "To identify goods or services",
-        b: "To limit market access",
-        c: "To protect designs",
-        d: "To register patents"
-      },
-      answer: "a"
-    },
-    {
-      question: "Purpose of the 'Fair Use'",
-      options: {
-        a: "To allow limited use of copyrighted materials",
-        b: "To promote infringement",
-        c: "To sell copies",
-        d: "To avoid copyright laws"
-      },
-      answer: "a"
-    },
-    {
-      question: "Remedy imposed by a court",
-      options: {
-        a: "Injunction",
-        b: "Fine",
-        c: "Imprisonment",
-        d: "Warning"
-      },
-      answer: "a"
-    },
-    {
-      question: "NOT considered \"industrial property\"",
-      options: {
-        a: "Novels",
-        b: "Trademarks",
-        c: "Patents",
-        d: "Industrial designs"
-      },
-      answer: "a"
-    },
-    {
-      question: "Sources on the Turnitin database",
-      options: {
-        a: "Similarity Index or Similarity Score",
-        b: "Plagiarism Report",
-        c: "References",
-        d: "Citations"
-      },
-      answer: "a"
-    },
-    {
-      question: "NOT a type of Industrial Property",
-      options: {
-        a: "Copyrights",
-        b: "Patents",
-        c: "Trademarks",
-        d: "Industrial Designs"
-      },
-      answer: "a"
-    },
-    {
-      question: "Trademark identify",
-      options: {
-        a: "A business or product",
-        b: "A legal document",
-        c: "A type of patent",
-        d: "A copyrighted work"
-      },
-      answer: "a"
-    },
-    {
-      question: "Requirement for copyright protection",
-      options: {
-        a: "It must be an original work of authorship",
-        b: "It must be registered",
-        c: "It must be published",
-        d: "It must be registered with IPO"
-      },
-      answer: "a"
-    },
-    {
-      question: "Can be trademarked",
-      options: {
-        a: "A unique logo",
-        b: "A generic word",
-        c: "A common phrase",
-        d: "A public domain image"
-      },
-      answer: "a"
-    },
-    {
-      question: "Companies that published your copies of the sources",
-      options: {
-        a: "Bibliography",
-        b: "References",
-        c: "Footnotes",
-        d: "Appendices"
-      },
-      answer: "a"
-    },
-    {
-      question: "Example of referencing tool",
-      options: {
-        a: "Mendeley",
-        b: "Excel",
-        c: "Photoshop",
-        d: "Word"
-      },
-      answer: "a"
-    },
-    {
-      question: "Sections or chapters and lists their page numbers",
-      options: {
-        a: "Table of contents",
-        b: "Index",
-        c: "Bibliography",
-        d: "Appendix"
-      },
-      answer: "a"
-    },
-    {
-      question: "Industrial Property can be protected by _____ of objects",
-      options: {
-        a: "Patent",
-        b: "Copyright",
-        c: "Trademark",
-        d: "Trade secret"
-      },
-      answer: "a"
-    },
-    // Add more questions as needed
-  ];
+const questions = [
+  {
+    question: "1. What is the core focus of technopreneurship?",
+    options: [
+      { text: "a) Small improvements in existing markets", correct: false },
+      { text: "b) Creating and managing technology-driven ventures", correct: true },
+      { text: "c) Traditional business models", correct: false },
+      { text: "d) Local market expansion", correct: false }
+    ]
+  },
+  {
+    question: "2. Which characteristic is NOT typically associated with technopreneurship?",
+    options: [
+      { text: "a) High growth potential", correct: false },
+      { text: "b) Reliance on R&D", correct: false },
+      { text: "c) Limited global reach", correct: true },
+      { text: "d) Disruptive nature", correct: false }
+    ]
+  },
+  {
+    question: "3. Why does technopreneurship matter?",
+    options: [
+      { text: "a) It slows down economic growth", correct: false },
+      { text: "b) It fosters problem solving and wealth creation", correct: true },
+      { text: "c) It limits innovation", correct: false },
+      { text: "d) It reduces competition", correct: false }
+    ]
+  },
+  {
+    question: "4. How does a traditional entrepreneur differ from a technopreneur?",
+    options: [
+      { text: "a) Focuses on new markets with innovative technology", correct: false },
+      { text: "b) Makes slow, small improvements in existing markets", correct: true },
+      { text: "c) Grows quickly and globally using new ideas", correct: false },
+      { text: "d) Relies solely on technological advancements", correct: false }
+    ]
+  },
+  {
+    question: "5. Which of the following is NOT a role of technology in fostering new ventures?",
+    options: [
+      { text: "a) Enabler", correct: false },
+      { text: "b) Scalability", correct: false },
+      { text: "c) Disruption of existing markets", correct: false },
+      { text: "d) Limiting reach", correct: true }
+    ]
+  },
+  {
+    question: "6. Which of the following is part of the startup ecosystem?",
+    options: [
+      { text: "a) Incubators", correct: true },
+      { text: "b) Traditional banks only", correct: false },
+      { text: "c) Large retail chains", correct: false },
+      { text: "d) Existing corporations only", correct: false }
+    ]
+  },
+  {
+    question: "7. Innovation is best described as:",
+    options: [
+      { text: "a) Creating new ideas or methods that add value or solve problems in novel ways", correct: true },
+      { text: "b) Small improvements in existing products", correct: false },
+      { text: "c) Copying competitors’ products", correct: false },
+      { text: "d) Reducing costs without changing products", correct: false }
+    ]
+  },
+  {
+    question: "8. The Post-it Note was invented by:",
+    options: [
+      { text: "a) Steve Jobs", correct: false },
+      { text: "b) Dr. Spencer Silver", correct: true },
+      { text: "c) Art Fry", correct: false },
+      { text: "d) Elon Musk", correct: false }
+    ]
+  },
+  {
+    question: "9. Who helped Dr. Spencer Silver turn his adhesive into a bookmark for church hymns?",
+    options: [
+      { text: "a) Steve Jobs", correct: false },
+      { text: "b) Art Fry", correct: true },
+      { text: "c) Brian Chesky", correct: false },
+      { text: "d) Joe Gebbia", correct: false }
+    ]
+  },
+  {
+    question: "10. Which entrepreneurial mindset trait involves being persistent despite failures?",
+    options: [
+      { text: "a) Curiosity", correct: false },
+      { text: "b) Resilience", correct: true },
+      { text: "c) Risk-taking", correct: false },
+      { text: "d) Vision", correct: false }
+    ]
+  },
+  {
+    question: "11. Which stage of product design involves testing and refining the product?",
+    options: [
+      { text: "a) Idea Generation", correct: false },
+      { text: "b) Concept Development", correct: false },
+      { text: "c) Prototyping", correct: true },
+      { text: "d) Launch and Iteration", correct: false }
+    ]
+  },
+  {
+    question: "12. What is the purpose of empathy mapping in product design?",
+    options: [
+      { text: "a) To evaluate financial feasibility", correct: false },
+      { text: "b) To understand users' needs, wants, and emotions", correct: true },
+      { text: "c) To determine production costs", correct: false },
+      { text: "d) To analyze competitors", correct: false }
+    ]
+  },
+  {
+    question: "13. Who was the visionary leader behind the creation of the iPhone?",
+    options: [
+      { text: "a) Jeff Bezos", correct: false },
+      { text: "b) Steve Jobs", correct: true },
+      { text: "c) Elon Musk", correct: false },
+      { text: "d) Bill Gates", correct: false }
+    ]
+  },
+  {
+    question: "14. Which approach was emphasized in Apple's iPhone development to improve user experience?",
+    options: [
+      { text: "a) Focus on functionality over design", correct: false },
+      { text: "b) Design thinking and prototyping", correct: true },
+      { text: "c) Ignoring user feedback", correct: false },
+      { text: "d) Hardware-only development", correct: false }
+    ]
+  },
+  {
+    question: "15. What does the iPhone’s ecosystem primarily include?",
+    options: [
+      { text: "a) Hardware only", correct: false },
+      { text: "b) App Store and integrated applications", correct: true },
+      { text: "c) Physical stores only", correct: false },
+      { text: "d) Traditional marketing campaigns", correct: false }
+    ]
+  },
+  {
+    question: "16. Which trait exemplifies the entrepreneurial mindset necessary for risk-taking and visionary thinking?",
+    options: [
+      { text: "a) Caution", correct: false },
+      { text: "b) Bold decisions", correct: true },
+      { text: "c) Avoiding new technology", correct: false },
+      { text: "d) Rigid planning", correct: false }
+    ]
+  },
+  {
+    question: "17. How did Apple respond to market feedback during iPhone development?",
+    options: [
+      { text: "a) They delayed updates", correct: false },
+      { text: "b) They adapted quickly and innovated", correct: true },
+      { text: "c) They ignored customer complaints", correct: false },
+      { text: "d) They focused only on hardware", correct: false }
+    ]
+  },
+  {
+    question: "18. Airbnb's founders identified a market gap involving:",
+    options: [
+      { text: "a) Lack of luxury hotels", correct: false },
+      { text: "b) Need for affordable, unique accommodations", correct: true },
+      { text: "c) Excess of hotel rooms", correct: false },
+      { text: "d) High hotel prices only in big cities", correct: false }
+    ]
+  },
+  {
+    question: "19. Which element was key to building trust on Airbnb?",
+    options: [
+      { text: "a) Low prices only", correct: false },
+      { text: "b) Creating trust through reviews and verification", correct: true },
+      { text: "c) No user feedback system", correct: false },
+      { text: "d) No background checks", correct: false }
+    ]
+  },
+  {
+    question: "20. Airbnb's business model is an example of:",
+    options: [
+      { text: "a) Traditional hotel industry", correct: false },
+      { text: "b) Peer-to-peer economy", correct: true },
+      { text: "c) Franchise business", correct: false },
+      { text: "d) Single owner operation", correct: false }
+    ]
+  },
+  {
+    question: "21. What feature helps Airbnb personalize user experiences?",
+    options: [
+      { text: "a) Random suggestions", correct: false },
+      { text: "b) Customized search filters and recommendations", correct: true },
+      { text: "c) Fixed listings only", correct: false },
+      { text: "d) No personalization needed", correct: false }
+    ]
+  },
+  {
+    question: "22. Which strategy helps Airbnb build a community?",
+    options: [
+      { text: "a) Limiting user interactions", correct: false },
+      { text: "b) Offering local experiences and community support", correct: true },
+      { text: "c) Not responding to user feedback", correct: false },
+      { text: "d) Removing reviews from the platform", correct: false }
+    ]
+  },
+  {
+    question: "23. What is a critical aspect of effective product design?",
+    options: [
+      { text: "a) Ignoring user needs", correct: false },
+      { text: "b) Empathizing with users and iterative testing", correct: true },
+      { text: "c) Focusing solely on aesthetics", correct: false },
+      { text: "d) Avoiding feedback collection", correct: false }
+    ]
+  },
+  {
+    question: "24. The development process of a new product begins with:",
+    options: [
+      { text: "a) Launching immediately", correct: false },
+      { text: "b) Idea generation and brainstorming", correct: true },
+      { text: "c) Mass production", correct: false },
+      { text: "d) Market exit", correct: false }
+    ]
+  },
+  {
+    question: "25. Which of the following best describes “scalability” in a tech venture?",
+    options: [
+      { text: "a) The ability to grow quickly and efficiently", correct: true },
+      { text: "b) A focus on small, local markets", correct: false },
+      { text: "c) Limiting growth to prevent risks", correct: false },
+      { text: "d) Reducing product features over time", correct: false }
+    ]
+  },
+  {
+    question: "26. Which of the following is NOT part of the startup ecosystem?",
+    options: [
+      { text: "a) Venture capitalists", correct: false },
+      { text: "b) Incubators", correct: false },
+      { text: "c) Government support", correct: false },
+      { text: "d) Traditional retail stores only", correct: true }
+    ]
+  },
+  {
+    question: "27. Which trait is essential for developing an entrepreneurial mindset?",
+    options: [
+      { text: "a) Complacency", correct: false },
+      { text: "b) Curiosity", correct: true },
+      { text: "c) Fear of failure", correct: false },
+      { text: "d) Rigid thinking", correct: false }
+    ]
+  },
+  {
+    question: "28. Which stage involves turning initial ideas into more concrete concepts?",
+    options: [
+      { text: "a) Idea Generation", correct: false },
+      { text: "b) Concept Development", correct: true },
+      { text: "c) Prototyping", correct: false },
+      { text: "d) Launch and Iteration", correct: false }
+    ]
+  },
+  {
+    question: "29. Apple’s approach to creating the iPhone prioritized:",
+    options: [
+      { text: "a) Cost reduction over user experience", correct: false },
+      { text: "b) User experience and design thinking", correct: true },
+      { text: "c) Hardware only", correct: false },
+      { text: "d) Ignoring ecosystem integration", correct: false }
+    ]
+  },
+  {
+    question: "30. The “disruptive nature” characteristic in technopreneurship refers to:",
+    options: [
+      { text: "a) Maintaining existing markets", correct: false },
+      { text: "b) Challenging and changing existing markets with innovation", correct: true },
+      { text: "c) Avoiding market competition", correct: false },
+      { text: "d) Small improvements only", correct: false }
+    ]
+  },
+  {
+    question: "31. What role does innovation play in business success?",
+    options: [
+      { text: "a) It drives progress and competitiveness", correct: true },
+      { text: "b) It slows down market response", correct: false },
+      { text: "c) It discourages risk-taking", correct: false },
+      { text: "d) It only benefits large companies", correct: false }
+    ]
+  },
+  {
+    question: "32. Which of the following is a real-world example of innovation?",
+    options: [
+      { text: "a) The Post-it Note", correct: true },
+      { text: "b) Traditional paper notebooks", correct: false },
+      { text: "c) Conventional landline phones", correct: false },
+      { text: "d) Manual typewriters", correct: false }
+    ]
+  },
+  {
+    question: "33. In developing a new product, “testing and feedback” is used to:",
+    options: [
+      { text: "a) Skip the prototyping stage", correct: false },
+      { text: "b) Collect insights and improve the product", correct: true },
+      { text: "c) Finalize the product without changes", correct: false },
+      { text: "d) Reduce customer involvement", correct: false }
+    ]
+  },
+  {
+    question: "34. Which of the following best describes “user-centric design”?",
+    options: [
+      { text: "a) Designing based on producer preferences", correct: false },
+      { text: "b) Understanding and designing for user needs", correct: true },
+      { text: "c) Ignoring user feedback", correct: false },
+      { text: "d) Focusing solely on aesthetics", correct: false }
+    ]
+  },
+  {
+    question: "35. Which element is crucial for making a platform like Airbnb trustworthy?",
+    options: [
+      { text: "a) No verification processes", correct: false },
+      { text: "b) Host and guest verification and reviews", correct: true },
+      { text: "c) No safety protocols", correct: false },
+      { text: "d) Limited customer support", correct: false }
+    ]
+  },
+  {
+    question: "36. What is a key benefit of personalization in product design?",
+    options: [
+      { text: "a) Decreased user engagement", correct: false },
+      { text: "b) Higher chances of user satisfaction and repeat usage", correct: true },
+      { text: "c) Less relevant recommendations", correct: false },
+      { text: "d) Less user data collection", correct: false }
+    ]
+  },
+  {
+    question: "37. Which entrepreneurial trait is associated with “seeing potential where others don’t”? ",
+    options: [
+      { text: "a) Caution", correct: false },
+      { text: "b) Vision", correct: true },
+      { text: "c) Resistance to change", correct: false },
+      { text: "d) Risk aversion", correct: false }
+    ]
+  },
+  {
+    question: "38. Which of the following best describes the “launch and iteration” stage?",
+    options: [
+      { text: "a) Market entry and continual improvement based on feedback", correct: true },
+      { text: "b) Final product release with no further updates", correct: false },
+      { text: "c) Generating initial ideas only", correct: false },
+      { text: "d) Abandoning the product after launch", correct: false }
+    ]
+  },
+  {
+    question: "39. What is one way Airbnb ensures safety and trust?",
+    options: [
+      { text: "a) No profile verification", correct: false },
+      { text: "b) Profile and ID verification, reviews, and secure payments", correct: true },
+      { text: "c) No customer support services", correct: false },
+      { text: "d) No feedback system", correct: false }
+    ]
+  },
+  {
+    question: "40. Which element is NOT essential in the innovation process?",
+    options: [
+      { text: "a) Creativity", correct: false },
+      { text: "b) Curiosity", correct: false },
+      { text: "c) Resistance to change", correct: true },
+      { text: "d) Resilience", correct: false }
+    ]
+  },
+  {
+    question: "41. How does a technopreneur typically grow their venture?",
+    options: [
+      { text: "a) Slowly and locally", correct: false },
+      { text: "b) Quickly and globally using innovative technology", correct: true },
+      { text: "c) Only through traditional marketing", correct: false },
+      { text: "d) By avoiding technological advancement", correct: false }
+    ]
+  },
+  {
+    question: "42. Which of the following is an example of a disruptive innovation?",
+    options: [
+      { text: "a) The introduction of smartphones replacing feature phones", correct: true },
+      { text: "b) Small improvements in existing car models", correct: false },
+      { text: "c) Increasing the size of existing products", correct: false },
+      { text: "d) Maintaining traditional business practices", correct: false }
+    ]
+  },
+  {
+    question: "43. Which trait helps entrepreneurs adapt to technological changes?",
+    options: [
+      { text: "a) Resistance to feedback", correct: false },
+      { text: "b) Agility and adaptability", correct: true },
+      { text: "c) Rigid planning", correct: false },
+      { text: "d) Avoiding innovation", correct: false }
+    ]
+  },
+  {
+    question: "44. Which is NOT a component of the product development process?",
+    options: [
+      { text: "a) Idea generation", correct: false },
+      { text: "b) Market exit", correct: true },
+      { text: "c) Prototyping", correct: false },
+      { text: "d) Testing and feedback", correct: false }
+    ]
+  },
+  {
+    question: "45. Which strategy is important for startups to grow rapidly?",
+    options: [
+      { text: "a) Limiting market reach", correct: false },
+      { text: "b) Leveraging technological advancements and scalable platforms", correct: true },
+      { text: "c) Avoiding customer feedback", correct: false },
+      { text: "d) Reducing innovation efforts", correct: false }
+    ]
+  },
+  {
+    question: "46. Which of the following is an example of a platform that supports innovation ecosystems?",
+    options: [
+      { text: "a) Incubators and accelerators", correct: true },
+      { text: "b) Only government offices", correct: false },
+      { text: "c) Traditional retail stores", correct: false },
+      { text: "d) Manual factories", correct: false }
+    ]
+  },
+  {
+    question: "47. The entrepreneurial mindset includes all EXCEPT:",
+    options: [
+      { text: "a) Curiosity", correct: false },
+      { text: "b) Resilience", correct: false },
+      { text: "c) Risk-taking", correct: false },
+      { text: "d) Complacency", correct: true }
+    ]
+  },
+  {
+    question: "48. Why is understanding user needs critical in product design?",
+    options: [
+      { text: "a) To create products that are useful and easy to use", correct: true },
+      { text: "b) To ignore customer feedback", correct: false },
+      { text: "c) To focus only on aesthetics", correct: false },
+      { text: "d) To reduce product features", correct: false }
+    ]
+  },
+  {
+    question: "49. Which element is emphasized in Apple’s approach to innovation?",
+    options: [
+      { text: "a) Hardware only", correct: false },
+      { text: "b) Cross-disciplinary collaboration and user experience focus", correct: true },
+      { text: "c) Ignoring market trends", correct: false },
+      { text: "d) Cost-cutting at the expense of quality", correct: false }
+    ]
+  },
+  {
+    question: "50. The main reason technopreneurship drives economic growth is because:",
+    options: [
+      { text: "a) It relies on outdated technology", correct: false },
+      { text: "b) It creates innovative solutions and scalable ventures", correct: true },
+      { text: "c) It discourages competition", correct: false },
+      { text: "d) It focuses only on small local markets", correct: false }
+    ]
+  }
+];
 
-  const quizDiv = document.getElementById('quiz');
+const quizContainer = document.getElementById('quiz-container');
 
-  questions.forEach((q, index) => {
-    const questionBlock = document.createElement('div');
-    questionBlock.className = 'question-block';
+function createQuestion(questionObj, index) {
+  const div = document.createElement('div');
+  div.className = 'question';
+  div.dataset.index = index;
 
-    // Question text
-    const questionText = document.createElement('div');
-    questionText.className = 'question';
-    questionText.innerText = `${index + 1}. ${q.question}`;
-    questionBlock.appendChild(questionText);
+  const questionTitle = document.createElement('h3');
+  questionTitle.textContent = questionObj.question;
+  div.appendChild(questionTitle);
 
-    // Options container
-    const optionsDiv = document.createElement('div');
-    optionsDiv.className = 'answers';
+  const optionsDiv = document.createElement('div');
+  optionsDiv.className = 'options';
 
-    for (const [key, value] of Object.entries(q.options)) {
-      const btn = document.createElement('button');
-      btn.className = 'answer';
-      btn.innerText = `${key.toUpperCase()}. ${value}`;
-      btn.dataset.correct = (key === q.answer);
-      btn.disabled = false;
+  questionObj.options.forEach((option, optIndex) => {
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'question' + index;
+    input.value = optIndex;
 
-      btn.addEventListener('click', () => {
-        // Disable all buttons for this question
-        Array.from(optionsDiv.children).forEach(b => b.disabled = true);
-        // Check if answer is correct
-        if (btn.dataset.correct === 'true') {
-          btn.classList.add('correct');
-        } else {
-          btn.classList.add('wrong');
-          // Highlight correct answer
-          Array.from(optionsDiv.children).forEach(b => {
-            if (b.dataset.correct === 'true') {
-              b.classList.add('correct');
-            }
-          });
-        }
-      });
-
-      optionsDiv.appendChild(btn);
-    }
-
-    questionBlock.appendChild(optionsDiv);
-    quizDiv.appendChild(questionBlock);
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(' ' + option.text));
+    optionsDiv.appendChild(label);
   });
+
+  const checkButton = document.createElement('button');
+  checkButton.textContent = 'Check Answer';
+  checkButton.addEventListener('click', () => checkAnswer(div, questionObj));
+  div.appendChild(optionsDiv);
+  div.appendChild(checkButton);
+
+  return div;
+}
+
+function checkAnswer(questionDiv, questionObj) {
+  const selectedOption = questionDiv.querySelector('input[type="radio"]:checked');
+  const optionsLabels = questionDiv.querySelectorAll('.options label');
+
+  // Reset previous highlights
+  optionsLabels.forEach(label => label.classList.remove('correct', 'wrong'));
+
+  if (!selectedOption) {
+    alert('Please select an answer.');
+    return;
+  }
+
+  const selectedIndex = parseInt(selectedOption.value);
+  const isCorrect = questionObj.options[selectedIndex].correct;
+
+  questionObj.options.forEach((option, index) => {
+    if (index === selectedIndex) {
+      if (option.correct) {
+        optionsLabels[index].classList.add('correct');
+      } else {
+        optionsLabels[index].classList.add('wrong');
+        // Highlight the correct answer
+        questionObj.options.forEach((opt, idx) => {
+          if (opt.correct) {
+            optionsLabels[idx].classList.add('correct');
+          }
+        });
+      }
+    }
+  });
+}
+
+// Generate all questions
+questions.forEach((q, index) => {
+  const qElem = createQuestion(q, index);
+  quizContainer.appendChild(qElem);
+});
 </script>
+
 </body>
 </html>
