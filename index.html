@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Techno & Innovation Quiz</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f4f4f4;
+  }
+  .quiz-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  .question {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.2em;
+  }
+  .answers {
+    margin-top: 10px;
+  }
+  .answer {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    font-size: 1em;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  /* Styles for correct and wrong answer highlights */
+  .correct {
+    background-color: #d4edda; /* light green */
+    border-color: #28a745; /* green border */
+  }
+  .wrong {
+    background-color: #f8d7da; /* light red */
+    border-color: #dc3545; /* red border */
+  }
+  /* Disable button style */
+  .answer:disabled {
+    cursor: not-allowed;
+  }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+  <h2>Techno & Innovation Quiz</h2>
+  <div id="quiz"></div>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "Key of problem solving in techno",
+      options: {
+        a: "Addressing societal challenges with technology",
+        b: "Process optimization and service enhancement",
+        c: "Providing tools for rapid development and deployment",
+        d: "Disruptive Innovation"
+      },
+      answer: "a"
+    },
+    {
+      question: "Characterizes the innovation approach",
+      options: {
+        a: "Process optimization and service enhancement",
+        b: "Addressing societal challenges with technology",
+        c: "Providing tools for rapid development and deployment",
+        d: "Disruptive Innovation"
+      },
+      answer: "a"
+    },
+    {
+      question: "Key role of technology as an enabler in techno",
+      options: {
+        a: "Providing tools for rapid development and deployment",
+        b: "Process optimization and service enhancement",
+        c: "Addressing societal challenges with technology",
+        d: "Disruptive Innovation"
+      },
+      answer: "a"
+    },
+    {
+      question: "Innovation do technopreneurs",
+      options: {
+        a: "Disruptive Innovation",
+        b: "Incremental Improvement",
+        c: "Process Optimization",
+        d: "Market Expansion"
+      },
+      answer: "a"
+    },
+    {
+      question: "Role do venture capitalists play",
+      options: {
+        a: "Invest in high-growth potential startups",
+        b: "Provide free resources",
+        c: "Regulate technology",
+        d: "Develop products"
+      },
+      answer: "a"
+    },
+    {
+      question: "Support structure primarily provides workspace",
+      options: {
+        a: "Incubators",
+        b: "Accelerators",
+        c: "Venture Capitalists",
+        d: "Research Labs"
+      },
+      answer: "a"
+    },
+    {
+      question: "Barrier to entry is most relevant for techno",
+      options: {
+        a: "Intellectual property",
+        b: "Market size",
+        c: "Funding",
+        d: "Regulations"
+      },
+      answer: "a"
+    },
+    {
+      question: "Distinguishes a technopreneur's growth pattern",
+      options: {
+        a: "Exponential and global growth by design",
+        b: "Linear and local growth",
+        c: "Slow and steady",
+        d: "Limited to domestic markets"
+      },
+      answer: "a"
+    },
+    {
+      question: "Aspect of the technopreneur mindset",
+      options: {
+        a: "Openness to pivoting",
+        b: "Resistance to change",
+        c: "Avoidance of risks",
+        d: "Focus on short-term profits"
+      },
+      answer: "a"
+    },
+    {
+      question: "Trait is essential to the technopreneur",
+      options: {
+        a: "Innovation-driven thinking",
+        b: "Risk aversion",
+        c: "Traditional approach",
+        d: "Passive attitude"
+      },
+      answer: "a"
+    },
+    {
+      question: "Most important for competitive advantage",
+      options: {
+        a: "Staying relevant through technological innovation",
+        b: "Cost-cutting",
+        c: "Brand recognition only",
+        d: "Market saturation"
+      },
+      answer: "a"
+    },
+    {
+      question: "Technology impact on a venture",
+      options: {
+        a: "Connects businesses to global markets instantly",
+        b: "Limits reach",
+        c: "Increases costs",
+        d: "Reduces innovation"
+      },
+      answer: "a"
+    },
+    {
+      question: "Support structure provides fixed-term, cohort",
+      options: {
+        a: "Accelerators",
+        b: "Incubators",
+        c: "Venture Capitalists",
+        d: "Research Labs"
+      },
+      answer: "a"
+    },
+    {
+      question: "Technopreneurship contributes to economic",
+      options: {
+        a: "By creating new industries and jobs",
+        b: "By reducing competition",
+        c: "By limiting innovation",
+        d: "By decreasing employment"
+      },
+      answer: "a"
+    },
+    {
+      question: "Resilience plays in technopreneurship",
+      options: {
+        a: "Persisting through challenges and setbacks",
+        b: "Avoiding risks",
+        c: "Ignoring failures",
+        d: "Waiting for perfect conditions"
+      },
+      answer: "a"
+    },
+    {
+      question: "Primary definition of techno",
+      options: {
+        a: "Entrepreneurship in the field of technology",
+        b: "Technology manufacturing",
+        c: "IT support services",
+        d: "Software development"
+      },
+      answer: "a"
+    },
+    {
+      question: "Technopreneurs typically approach wealth",
+      options: {
+        a: "By generating value for multiple stakeholders",
+        b: "By quick profits only",
+        c: "Through government grants",
+        d: "By monopolizing markets"
+      },
+      answer: "a"
+    },
+    {
+      question: "NOT typically associated with techno",
+      options: {
+        a: "Slow, linear growth",
+        b: "Disruptive innovation",
+        c: "Rapid scale-up",
+        d: "Global reach"
+      },
+      answer: "a"
+    },
+    {
+      question: "Scalability benefit for technopreneurial ventures",
+      options: {
+        a: "It allows for growth without proportional cost increase",
+        b: "It increases costs exponentially",
+        c: "It limits expansion",
+        d: "It reduces market reach"
+      },
+      answer: "a"
+    },
+    {
+      question: "Digital transformation relates to techno",
+      options: {
+        a: "It fuels ongoing shifts in all sectors",
+        b: "It only affects manufacturing",
+        c: "It slows down processes",
+        d: "It is irrelevant to tech"
+      },
+      answer: "a"
+    },
+    {
+      question: "Do not use competitor's mark in such",
+      options: {
+        a: "True",
+        b: "False"
+      },
+      answer: "a"
+    },
+    {
+      question: "Fill in the blank: ______ and Artistic Works",
+      options: {
+        a: "Literary",
+        b: "Musical",
+        c: "Visual",
+        d: "Performing"
+      },
+      answer: "a"
+    },
+    {
+      question: "Intellectual property",
+      options: {
+        a: "Property that arises from human intellect and creation",
+        b: "Physical property",
+        c: "Natural resource",
+        d: "Real estate"
+      },
+      answer: "a"
+    },
+    {
+      question: "Requirement for a patentable invention",
+      options: {
+        a: "It must be useful",
+        b: "It must be popular",
+        c: "It must be easy to copy",
+        d: "It must be secret"
+      },
+      answer: "a"
+    },
+    {
+      question: "Invention for which the ______ claims",
+      options: {
+        a: "Inventor",
+        b: "Company",
+        c: "Government",
+        d: "Researcher"
+      },
+      answer: "a"
+    },
+    {
+      question: "Copyright law protects",
+      options: {
+        a: "True",
+        b: "False"
+      },
+      answer: "a"
+    },
+    {
+      question: "Protection for Literary & Artistic",
+      options: {
+        a: "Copyright",
+        b: "Patent",
+        c: "Trademark",
+        d: "Trade secret"
+      },
+      answer: "a"
+    },
+    {
+      question: "Remedy for trademark infringement",
+      options: {
+        a: "Monetary compensation only",
+        b: "Imprisonment",
+        c: "Rebranding",
+        d: "None"
+      },
+      answer: "a"
+    },
+    {
+      question: "Constitutes copyright infringement",
+      options: {
+        a: "Reproducing a work without permission",
+        b: "Creating new works",
+        c: "Using own ideas",
+        d: "Public domain use"
+      },
+      answer: "a"
+    },
+    {
+      question: "Original in copyright law",
+      options: {
+        a: "True",
+        b: "False"
+      },
+      answer: "a"
+    },
+    {
+      question: "Intellectual Property arises from the ______ of human creation",
+      options: {
+        a: "Intellect",
+        b: "Resources",
+        c: "Market",
+        d: "Technology"
+      },
+      answer: "a"
+    },
+    {
+      question: "Main purpose of a patent",
+      options: {
+        a: "To grant exclusive rights to an invention",
+        b: "To promote competition",
+        c: "To increase sales",
+        d: "To prevent others from copying"
+      },
+      answer: "a"
+    },
+    {
+      question: "Main purpose of a trade secret",
+      options: {
+        a: "To maintain a competitive advantage",
+        b: "To publish information",
+        c: "To share openly",
+        d: "To register with authorities"
+      },
+      answer: "a"
+    },
+    {
+      question: "Two distinct forms of intellectual",
+      options: {
+        a: "Copyrights and trade secrets",
+        b: "Patents and trademarks",
+        c: "Design rights and utility models",
+        d: "Licenses and permits"
+      },
+      answer: "a"
+    },
+    {
+      question: "Common type of trade secret",
+      options: {
+        a: "Customer lists",
+        b: "Patent filings",
+        c: "Trademark logos",
+        d: "Copyright notices"
+      },
+      answer: "a"
+    },
+    {
+      question: "Filing fee for a trademark",
+      options: {
+        a: "PHP 2,592",
+        b: "PHP 1,000",
+        c: "PHP 5,000",
+        d: "PHP 10,000"
+      },
+      answer: "a"
+    },
+    {
+      question: "Philippines that values your right",
+      options: {
+        a: "Intellectual Property Office of the Philippines (IPOPHL)",
+        b: "Philippine Patent Office",
+        c: "Philippine Copyright Office",
+        d: "Department of Trade and Industry"
+      },
+      answer: "a"
+    },
+    {
+      question: "Splitting larger content into separate pages",
+      options: {
+        a: "Pagination",
+        b: "Segmentation",
+        c: "Partitioning",
+        d: "Dividing"
+      },
+      answer: "a"
+    },
+    {
+      question: "Industrial Property describes ______ matter that",
+      options: {
+        a: "Creations",
+        b: "Ideas",
+        c: "Resources",
+        d: "Innovations"
+      },
+      answer: "a"
+    },
+    {
+      question: "Plural form: know your __________",
+      options: {
+        a: "Rights",
+        b: "Assets",
+        c: "Patents",
+        d: "Inventions"
+      },
+      answer: "a"
+    },
+    {
+      question: "True about patents",
+      options: {
+        a: "They are territorial in nature",
+        b: "They are global",
+        c: "They last forever",
+        d: "They are automatic"
+      },
+      answer: "a"
+    },
+    {
+      question: "Duration of copyright protection",
+      options: {
+        a: "50 years",
+        b: "70 years",
+        c: "100 years",
+        d: "Lifetime"
+      },
+      answer: "a"
+    },
+    {
+      question: "Symbol \"℠\"",
+      options: {
+        a: "Service mark",
+        b: "Trademark",
+        c: "Copyright",
+        d: "Patent"
+      },
+      answer: "a"
+    },
+    {
+      question: "American __________ Association (APA)",
+      options: {
+        a: "Psychological",
+        b: "Legal",
+        c: "Engineering",
+        d: "Medical"
+      },
+      answer: "a"
+    },
+    {
+      question: "They are books, paintings, musical compositions",
+      options: {
+        a: "Copyright",
+        b: "Patent",
+        c: "Trademark",
+        d: "Trade secret"
+      },
+      answer: "a"
+    },
+    {
+      question: "Protects freedom of __________",
+      options: {
+        a: "Speech",
+        b: "Movement",
+        c: "Privacy",
+        d: "Assembly"
+      },
+      answer: "a"
+    },
+    {
+      question: "Act of the use of another's work",
+      options: {
+        a: "Plagiarism",
+        b: "Citation",
+        c: "Fair use",
+        d: "Attribution"
+      },
+      answer: "a"
+    },
+    {
+      question: "Unauthorized use of a copyrighted work",
+      options: {
+        a: "Copyright infringement",
+        b: "Fair use",
+        c: "Licensing",
+        d: "Public domain"
+      },
+      answer: "a"
+    },
+    {
+      question: "NOT covered by copyright",
+      options: {
+        a: "Ideas",
+        b: "Literary works",
+        c: "Music",
+        d: "Films"
+      },
+      answer: "a"
+    },
+    {
+      question: "Focus of Industrial Property",
+      options: {
+        a: "Commercial inventions",
+        b: "Artistic works",
+        c: "Literary works",
+        d: "Software"
+      },
+      answer: "a"
+    },
+    {
+      question: "Main purpose of a trademark",
+      options: {
+        a: "To identify goods or services",
+        b: "To limit market access",
+        c: "To protect designs",
+        d: "To register patents"
+      },
+      answer: "a"
+    },
+    {
+      question: "Purpose of the 'Fair Use'",
+      options: {
+        a: "To allow limited use of copyrighted materials",
+        b: "To promote infringement",
+        c: "To sell copies",
+        d: "To avoid copyright laws"
+      },
+      answer: "a"
+    },
+    {
+      question: "Remedy imposed by a court",
+      options: {
+        a: "Injunction",
+        b: "Fine",
+        c: "Imprisonment",
+        d: "Warning"
+      },
+      answer: "a"
+    },
+    {
+      question: "NOT considered \"industrial property\"",
+      options: {
+        a: "Novels",
+        b: "Trademarks",
+        c: "Patents",
+        d: "Industrial designs"
+      },
+      answer: "a"
+    },
+    {
+      question: "Sources on the Turnitin database",
+      options: {
+        a: "Similarity Index or Similarity Score",
+        b: "Plagiarism Report",
+        c: "References",
+        d: "Citations"
+      },
+      answer: "a"
+    },
+    {
+      question: "NOT a type of Industrial Property",
+      options: {
+        a: "Copyrights",
+        b: "Patents",
+        c: "Trademarks",
+        d: "Industrial Designs"
+      },
+      answer: "a"
+    },
+    {
+      question: "Trademark identify",
+      options: {
+        a: "A business or product",
+        b: "A legal document",
+        c: "A type of patent",
+        d: "A copyrighted work"
+      },
+      answer: "a"
+    },
+    {
+      question: "Requirement for copyright protection",
+      options: {
+        a: "It must be an original work of authorship",
+        b: "It must be registered",
+        c: "It must be published",
+        d: "It must be registered with IPO"
+      },
+      answer: "a"
+    },
+    {
+      question: "Can be trademarked",
+      options: {
+        a: "A unique logo",
+        b: "A generic word",
+        c: "A common phrase",
+        d: "A public domain image"
+      },
+      answer: "a"
+    },
+    {
+      question: "Companies that published your copies of the sources",
+      options: {
+        a: "Bibliography",
+        b: "References",
+        c: "Footnotes",
+        d: "Appendices"
+      },
+      answer: "a"
+    },
+    {
+      question: "Example of referencing tool",
+      options: {
+        a: "Mendeley",
+        b: "Excel",
+        c: "Photoshop",
+        d: "Word"
+      },
+      answer: "a"
+    },
+    {
+      question: "Sections or chapters and lists their page numbers",
+      options: {
+        a: "Table of contents",
+        b: "Index",
+        c: "Bibliography",
+        d: "Appendix"
+      },
+      answer: "a"
+    },
+    {
+      question: "Industrial Property can be protected by _____ of objects",
+      options: {
+        a: "Patent",
+        b: "Copyright",
+        c: "Trademark",
+        d: "Trade secret"
+      },
+      answer: "a"
+    },
+    // Add more questions as needed
+  ];
+
+  const quizDiv = document.getElementById('quiz');
+
+  questions.forEach((q, index) => {
+    const questionBlock = document.createElement('div');
+    questionBlock.className = 'question-block';
+
+    // Question text
+    const questionText = document.createElement('div');
+    questionText.className = 'question';
+    questionText.innerText = `${index + 1}. ${q.question}`;
+    questionBlock.appendChild(questionText);
+
+    // Options container
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'answers';
+
+    for (const [key, value] of Object.entries(q.options)) {
+      const btn = document.createElement('button');
+      btn.className = 'answer';
+      btn.innerText = `${key.toUpperCase()}. ${value}`;
+      btn.dataset.correct = (key === q.answer);
+      btn.disabled = false;
+
+      btn.addEventListener('click', () => {
+        // Disable all buttons for this question
+        Array.from(optionsDiv.children).forEach(b => b.disabled = true);
+        // Check if answer is correct
+        if (btn.dataset.correct === 'true') {
+          btn.classList.add('correct');
+        } else {
+          btn.classList.add('wrong');
+          // Highlight correct answer
+          Array.from(optionsDiv.children).forEach(b => {
+            if (b.dataset.correct === 'true') {
+              b.classList.add('correct');
+            }
+          });
+        }
+      });
+
+      optionsDiv.appendChild(btn);
+    }
+
+    questionBlock.appendChild(optionsDiv);
+    quizDiv.appendChild(questionBlock);
+  });
+</script>
+</body>
+</html>
